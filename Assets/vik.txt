@@ -1,0 +1,18 @@
+Crear un sistema para una empresa que permita que los clientes se registren en la web, indicando:
+su email, 
+preferencias para los emails (semanal, diario) , 
+obtener un tipo de tarjeta (básica, VIP, premium).
+
+El problema es que, aunque se permita mucha flexibilidad, la mayoría de clientes opta por una configuración típica: proporciona solo nombre e email, hacer una subscripción al email semanal (NO recibir el email diario)- recibir los emails en formato HTML- hacerse la tarjeta tipo BASICA. Y claro, el código para esta configuración básica queda muy "pesado". 
+ServicioConfiguracion configuracion = new ServicioConfiguracion(); 
+ServicioFidelizacion fidelizacion = new ServicioFidelizacion();
+ServicioComunicacion comunicacion = new ServicioComunicacion(); 
+fidelizacion.crearTarjeta(nombreCliente, ServicioFidelizacion.Tipo.BASICA); 
+configuracion.addEmail(nombreCliente, emailCliente); // crea una preferencia para email semanal en formato html 
+
+PreferenciasComunicacion preferencias = new PreferenciasComunicacion(false, true, true);
+comunicacion.setPreferencias(nombreCliente, preferencias); 
+
+Se propone introducir un "facade" que simplifique este caso tan habitual.
+Crear un facade en una nueva clase que ofrezca un método tipo "registroExpres" con solo dos parámetros, nombre e email. Este método deberá realizar la inscripción típica mostrada antes. 
+A7_NombreApellido.zip
